@@ -7,7 +7,7 @@ import {MainLayoutComponent} from './components/main-layout/main-layout.componen
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {TestListComponent} from './components/test-list/test-list.component';
-import {EditCreateTestComponent} from './components/edit-create-test/edit-create-test.component';
+import {PassTestComponent} from './components/pass-test/pass-test.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -32,7 +32,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
     FooterComponent,
     TestListComponent,
-    EditCreateTestComponent,
+    PassTestComponent,
     EditCreateTestListModalComponent
   ],
   imports: [

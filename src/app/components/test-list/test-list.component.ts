@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ITestList} from "../../interface";
-import {TestListService} from "../../services/test-list.service";
-import {EditCreateTestListModalComponent} from "../edit-create-test-list-modal/edit-create-test-list-modal.component";
 import {MatDialog} from "@angular/material/dialog";
-import {MatTableModule} from '@angular/material/table';
+import {TestListService} from "../../services/test-list.service";
 import {animate, state, style, transition, trigger} from '@angular/animations';
+
+import {ITestList} from "../../interface";
+import {EditCreateTestListModalComponent} from "../edit-create-test-list-modal/edit-create-test-list-modal.component";
 
 @Component({
   selector: 'app-test-list',
@@ -31,9 +31,14 @@ export class TestListComponent implements OnInit {
 
   ngOnInit(): void {
     this.testListService.getAllList().subscribe(value => {
-      if(value.length > 0){
-        this.dataSource = value
-      console.log(this.dataSource)
+      if (value.length > 0) {
+        this.dataSource = value.map(obj => {
+          const modifiedObj = { ...obj };
+          modifiedObj["Test Created"] = modifiedObj["Test Created"]?.split('T')[0];
+          return modifiedObj;
+        });
+
+        console.log(this.dataSource)
       }
     })
   };

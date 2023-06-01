@@ -18,9 +18,7 @@ export class TestListService {
   };
 
   createTest(listObg: ITestList): Observable<ITestList> {
-    const currentDate = new Date();
-    const id = Math.floor(currentDate.getTime() / 1000);
-    return this.httpClient.post<ITestList>(testListUrl, {...listObg, id});
+    return this.httpClient.post<ITestList>(testListUrl, listObg);
   };
 
   updateTest(id: number, listObg: ITestList): Observable<ITestList> {

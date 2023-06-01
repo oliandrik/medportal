@@ -5,4 +5,5 @@ export interface ITestList {
   "Test Created": string;
   "Test Is Passed": string;
   "Result": number | null;
+  description: number | null;
 }
