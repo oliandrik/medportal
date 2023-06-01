@@ -11,7 +11,7 @@ import {testListUrl} from "../constsnts/urls";
 export class TestListService {
 
   constructor(private httpClient: HttpClient) {
-  }
+  };
 
   getAllList(): Observable<ITestList[]> {
     return this.httpClient.get<ITestList[]>(testListUrl)

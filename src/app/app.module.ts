@@ -23,6 +23,9 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatExpansionModule} from "@angular/material/expansion";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './components/home/home.component';
+import { Err404Component } from './components/err404/err404.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     TestListComponent,
     PassTestComponent,
-    EditCreateTestListModalComponent
+    EditCreateTestListModalComponent,
+    HomeComponent,
+    Err404Component,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

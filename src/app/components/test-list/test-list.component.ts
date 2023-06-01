@@ -5,6 +5,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 
 import {ITestList} from "../../interface";
 import {EditCreateTestListModalComponent} from "../edit-create-test-list-modal/edit-create-test-list-modal.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-test-list',
@@ -26,7 +27,8 @@ export class TestListComponent implements OnInit {
   expandedElement: ITestList | null;
 
   constructor(private testListService: TestListService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private router:Router) {
   };
 
   ngOnInit(): void {
@@ -43,11 +45,6 @@ export class TestListComponent implements OnInit {
     })
   };
 
-
-  addTest() {
-
-  };
-
   removeTest() {
 
   };
@@ -61,5 +58,9 @@ export class TestListComponent implements OnInit {
         hasBackdrop: false
       }
     )
+  }
+
+  onPassTest(testId:number):void {
+    this.router.navigate(['/pass-test'], {queryParams: {testId}})
   }
 }
