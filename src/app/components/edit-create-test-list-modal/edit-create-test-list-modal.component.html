@@ -1,0 +1,33 @@
+<form class="form-wrap" [formGroup]="form">
+  <mat-card>
+    <mat-card-title>Add Form</mat-card-title>
+    <mat-error *ngIf="error">Fields required</mat-error>
+    <mat-card-content>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Test Name</mat-label>
+          <input type="text" matInput formControlName="Test Name">
+          <mat-error>this field is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Doctor Name</mat-label>
+          <input type="text" matInput formControlName="Doctor">
+          <mat-error>this field is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Created at: (DD/MM/YYYY)</mat-label>
+          <input type="text" matInput formControlName="Test Created">
+          <mat-error>this field is required</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <button [disabled]="form.invalid" mat-raised-button color="primary" (click)="createTest()">Create Test</button>
+      <button mat-raised-button color="primary" (click)="cancel()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

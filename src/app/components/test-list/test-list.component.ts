@@ -1,37 +1,43 @@
-import {Component} from '@angular/core';
-
-export interface PeriodicElement {
-  "Test Name": string;
-  "Doctor": string;
-  "Test Created": string;
-  "Test Is Passed": string;
-  "Result": number | null;
-
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {"Test Name": 'Hydrogen', "Doctor": 'Mykola', "Test Created": '31/05/2023', "Test Is Passed":'---', "Result":null},
-  {"Test Name": 'Helium', "Doctor": 'Mykola', "Test Created": '31/05/2023', "Test Is Passed":'31/05/2023 ', "Result":5},
-  {"Test Name": 'Lithium', "Doctor": 'Mykola', "Test Created": '31/05/2023', "Test Is Passed":'--- ', "Result":null},
-  {"Test Name": 'Beryllium', "Doctor": 'Mykola', "Test Created": '31/05/2023', "Test Is Passed":'31/05/2023 ', "Result":8},
-  {"Test Name": 'Boron', "Doctor": 'Mykola', "Test Created": '31/05/2023', "Test Is Passed":'31/05/2023', "Result":3},
-  {"Test Name": 'Carbon', "Doctor": 'Mykola', "Test Created": '31/05/2023', "Test Is Passed":'31/05/2023', "Result":10},
-  {"Test Name": 'Nitrogen', "Doctor": 'Mykola', "Test Created": '31/05/2023', "Test Is Passed":'31/05/2023', "Result":5},
-  {"Test Name": 'Oxygen', "Doctor": 'Mykola', "Test Created": '31/05/2023', "Test Is Passed":'31/05/2023', "Result":8},
-  {"Test Name": 'Fluorine', "Doctor": 'Mykola', "Test Created": '31/05/2023', "Test Is Passed":'31/05/2023', "Result":5},
-  {"Test Name": 'Neon', "Doctor": 'Mykola', "Test Created": '31/05/2023', "Test Is Passed":'--- ', "Result":null},
-];
+import {Component, OnInit} from '@angular/core';
+import {ITestList} from "../../interface";
+import {TestListService} from "../../services/test-list.service";
+import {EditCreateTestListModalComponent} from "../edit-create-test-list-modal/edit-create-test-list-modal.component";
+import {MatDialog} from "@angular/material/dialog";
+import {MatTableModule} from '@angular/material/table';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-test-list',
   templateUrl: './test-list.component.html',
   styleUrls: ['./test-list.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 
-export class TestListComponent {
-  displayedColumns: string[] = ['Test Name', 'Doctor', 'Test Created', 'Test Is Passed', 'Result'];
-  columnsToDisplay: string[] = this.displayedColumns.slice();
-  data: PeriodicElement[] = ELEMENT_DATA;
+export class TestListComponent implements OnInit {
+  dataSource: ITestList[] | [];
+  columnsToDisplay = ['Test Name', 'Doctor', 'Test Created', 'Test Is Passed', 'Result'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
+  expandedElement: ITestList | null;
+
+  constructor(private testListService: TestListService,
+              private dialog: MatDialog) {
+  };
+
+  ngOnInit(): void {
+    this.testListService.getAllList().subscribe(value => {
+      if(value.length > 0){
+        this.dataSource = value
+      console.log(this.dataSource)
+      }
+    })
+  };
+
 
   addTest() {
 
@@ -41,4 +47,14 @@ export class TestListComponent {
 
   };
 
+
+  createTest() {
+    this.dialog.open(EditCreateTestListModalComponent, {
+        disableClose: true,
+        enterAnimationDuration: '1s',
+        exitAnimationDuration: '1s',
+        hasBackdrop: false
+      }
+    )
+  }
 }
