@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {TestListService} from "../../services/test-list.service";
+import {TestListService} from "../../services";
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 import {ITestList} from "../../interface";
 import {EditCreateTestListModalComponent} from "../edit-create-test-list-modal/edit-create-test-list-modal.component";
 import {Router} from "@angular/router";
-import {IdService} from "../../services/id.service";
+import {IdService} from "../../services";
 
 @Component({
   selector: 'app-test-list',
