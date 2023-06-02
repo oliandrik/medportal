@@ -39,11 +39,14 @@
           <div class="_dashboard">
             <button mat-button
                     class="dashboard_button"
-                    (click)="onPassTest(element['testId'])">
+                    (click)="onPassTest(element['testId'], element.id)">
               Pass The Test
               <mat-icon>extension</mat-icon>
             </button>
-            <button class="dashboard_button" mat-stroked-button color="warn">
+            <button mat-stroked-button
+                    color="warn"
+                    class="dashboard_button"
+                    (click)="removeTest(element.id)">
               Remove The Test
               <mat-icon>delete_forever</mat-icon>
             </button>

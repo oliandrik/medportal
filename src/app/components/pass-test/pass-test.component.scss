@@ -1,0 +1,26 @@
+.pass_test_wrap {
+ width: 100%;
+  padding: 10px 20px;
+
+  .example-input-label,
+  .example-add-tab-button,
+  .example-delete-tab-button {
+    margin: 8px;
+  }
+
+  ::ng-deep .mat-mdc-tab-body-content {
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0;
+  }
+
+  ::ng-deep .mat-mdc-tab-body.mat-mdc-tab-body-active {
+    min-height: max-content;
+    overflow-y: clip !important;
+  }
+
+  ::ng-deep .mat-button-toggle-standalone, .mat-button-toggle-group {
+    width: fit-content;
+  }
+}

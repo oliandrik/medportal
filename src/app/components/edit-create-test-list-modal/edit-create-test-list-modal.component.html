@@ -12,6 +12,13 @@
       </div>
       <div>
         <mat-form-field appearance="outline">
+          <mat-label>Test ID</mat-label>
+          <input type="text" matInput formControlName="testId">
+          <mat-error>this field is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
           <mat-label>Doctor Name</mat-label>
           <input type="text" matInput formControlName="Doctor">
           <mat-error>this field is required</mat-error>

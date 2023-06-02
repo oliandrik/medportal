@@ -1,5 +1,46 @@
-<div *ngIf="test;else loading">{{test|json}}</div>
+<div *ngIf="!error;else err" style="width: 100%">
+  <div class="pass_test_wrap" *ngIf="test;else loading">
+    <h2 style="text-align: center">{{test.testName}}</h2>
+
+
+    <mat-tab-group [selectedIndex]="selected.value"
+                   (selectedIndexChange)="selected.setValue($event)">
+      <mat-tab *ngFor="let tab of test.questions; let index = index"
+               [label]="(index+1).toString()"
+               [disabled]="isTabDisabled.includes(index)">
+        <h4>{{(index + 1) + ') '}}{{tab.question}}</h4>
+        <hr>
+        <p>{{'Rate from ' + tab.minScore + ' to ' + tab.maxScore }}.</p>
+        <mat-button-toggle-group #group="matButtonToggleGroup">
+          <mat-button-toggle *ngFor="let score of buttonScore" [value]="score" aria-label="Text align left">
+            {{score}}
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+        <div class="example-selected-value">Selected value: {{group.value}}</div>
+        <div style="display: flex;">
+          <button style="width: 150px" mat-raised-button
+                  class="example-delete-tab-button"
+                  [disabled]=" isTabDisabled.includes(index) || !group.value"
+                  (click)="onQuestion(index, group.value)">
+            Next Question
+          </button>
+          <button style="width: 150px" mat-raised-button
+                  color="primary"
+                  class="example-delete-tab-button"
+                  [disabled]="isTabDisabled.length !== test.questions.length"
+                  (click)="onCompleteTest()">
+            Complete the test
+          </button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
 
 <ng-template #loading>
   <h1>Loading...</h1>
+</ng-template>
+
+<ng-template #err>
+  <h1 style="color: brown">ERROR...</h1>
 </ng-template>

@@ -24,6 +24,7 @@ export class EditCreateTestListModalComponent {
       "Test Name": new FormControl('', [Validators.required]),
       "Doctor": new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
+      testId: new FormControl('', [Validators.required]),
     })
   }
 
@@ -37,12 +38,13 @@ export class EditCreateTestListModalComponent {
       "Test Created": new Date(),
       id,
     }
-    console.log(newTest)
     this.listService.createTest(newTest).subscribe({
       next: (value) => {
         console.log(value)
         this.error = false
         this.dialogRef.close()
+        location.reload()
+
       },
       error: (e) => {
         this.error = true

@@ -21,11 +21,12 @@ export class TestListService {
     return this.httpClient.post<ITestList>(testListUrl, listObg);
   };
 
-  updateTest(id: number, listObg: ITestList): Observable<ITestList> {
-    return this.httpClient.put<ITestList>(testListUrl + id, listObg)
+  updateTest(id: number, listObg: any): Observable<ITestList> {
+    return this.httpClient.put<ITestList>(testListUrl + '/' + id, listObg)
   };
 
   deleteTest(id: number): Observable<ITestList> {
-    return this.httpClient.delete<ITestList>(testListUrl + id)
+    console.log(id)
+    return this.httpClient.delete<ITestList>(testListUrl + '/' + id)
   };
 }

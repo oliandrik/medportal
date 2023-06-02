@@ -60,7 +60,7 @@
       "question": " Активно проводити увесь день вдома чи на роботі",
       "minScore": "0",
       "maxScore": "10",
-      "description": null
+      "description": "0-легко, 10 - неможливо"
     }
   ]
 }

@@ -6,7 +6,7 @@ const fs = require('fs');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(cors({origin: 'http://localhost:4200'}));
 const testListPath = './database/test-list.json'
 const passTest_1Path = './database/test_1.json'
 const passTest_2Path = './database/test_2.json'
@@ -73,18 +73,59 @@ app.post('/api/data', (req, res) => {
   });
 });
 
-app.put('/api/data', (req, res) => {
-  const newData = req.body;
+app.put('/api/data/:id', (req, res) => {
+  const idToUpdate = req.params.id;
+  const updatedData = req.body;
 
-  fs.writeFile(testListPath, JSON.stringify(newData), (err) => {
+  fs.readFile(testListPath, 'utf8', (err, data) => {
     if (err) {
-      console.error('Writing file error... ', err);
+      console.error('Reading file error...', err);
       return res.status(500).send('Server error...');
     }
 
-    res.sendStatus(200);
+    const existingData = JSON.parse(data);
+    const updatedItemIndex = existingData.findIndex(item => +item.id === +idToUpdate);
+
+    if (updatedItemIndex === -1) {
+      console.error('Object not found...');
+      return res.status(404).send('Object not found...');
+    }
+
+    const updatedItem = { ...existingData[updatedItemIndex], ...updatedData };
+    existingData[updatedItemIndex] = updatedItem;
+
+    fs.writeFile(testListPath, JSON.stringify(existingData), (err) => {
+      if (err) {
+        console.error('Writing file error...:', err);
+        return res.status(500).send('Server error');
+      }
+
+      res.json(updatedItem);
+    });
   });
-})
+});
+
+
+app.delete('/api/data/:id', (req, res) => {
+  const idToDelete = req.params.id;
+  fs.readFile(testListPath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Reading file error... ', err);
+      return res.status(500).send('Server error...');
+    }
+
+    const existingData = JSON.parse(data);
+    const filteredData = existingData.filter(item => +item.id !== +idToDelete);
+    fs.writeFile(testListPath, JSON.stringify(filteredData), (err) => {
+      if (err) {
+        console.error('Writing file error... ', err);
+        return res.status(500).send('Server error...');
+      }
+
+      res.send('File has been deleted');
+    });
+  });
+});
 
 
 app.listen(5000, () => {

@@ -6,6 +6,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ITestList} from "../../interface";
 import {EditCreateTestListModalComponent} from "../edit-create-test-list-modal/edit-create-test-list-modal.component";
 import {Router} from "@angular/router";
+import {IdService} from "../../services/id.service";
 
 @Component({
   selector: 'app-test-list',
@@ -28,39 +29,51 @@ export class TestListComponent implements OnInit {
 
   constructor(private testListService: TestListService,
               private dialog: MatDialog,
-              private router:Router) {
+              private router: Router,
+              private idService: IdService) {
   };
 
   ngOnInit(): void {
+    this.idService.removeId()
     this.testListService.getAllList().subscribe(value => {
       if (value.length > 0) {
         this.dataSource = value.map(obj => {
-          const modifiedObj = { ...obj };
+          const modifiedObj = {...obj};
           modifiedObj["Test Created"] = modifiedObj["Test Created"]?.split('T')[0];
+          modifiedObj["Test Is Passed"] = modifiedObj["Test Is Passed"]?.split('GM')[0];
+          modifiedObj["Result"] = modifiedObj["Result"] && Math.round(modifiedObj["Result"] * 10) / 10;
           return modifiedObj;
         });
-
         console.log(this.dataSource)
       }
     })
   };
 
-  removeTest() {
-
+  removeTest(id: number): void {
+    this.testListService.deleteTest(id).subscribe({
+      next: (value) => {
+        console.log(value)
+        location.reload()
+      },
+      error: (e) => {
+        console.log(e)
+        location.reload()
+      }
+    })
   };
 
-
-  createTest() {
+  createTest(): void {
     this.dialog.open(EditCreateTestListModalComponent, {
         disableClose: true,
         enterAnimationDuration: '1s',
         exitAnimationDuration: '1s',
         hasBackdrop: false
       }
-    )
-  }
+    );
+  };
 
-  onPassTest(testId:number):void {
-    this.router.navigate(['/pass-test'], {queryParams: {testId}})
-  }
+  onPassTest(testId: number, listId: number): void {
+    this.idService.setId(listId);
+    this.router.navigate(['/pass-test'], {queryParams: {testId}});
+  };
 }

@@ -26,6 +26,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { Err404Component } from './components/err404/err404.component';
 import { ContactComponent } from './components/contact/contact.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 
 @NgModule({
@@ -39,7 +42,7 @@ import { ContactComponent } from './components/contact/contact.component';
     EditCreateTestListModalComponent,
     HomeComponent,
     Err404Component,
-    ContactComponent
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,10 @@ import { ContactComponent } from './components/contact/contact.component';
     MatCardModule,
     MatButtonModule,
     MatExpansionModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatCheckboxModule,
+    MatTabsModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
