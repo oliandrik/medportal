@@ -1,0 +1,11 @@
+<div class="sidebar">
+  <div>
+    <div *ngFor="let link of links" class="links">
+      <a href="{{ link.link }}">{{ link.title }}</a>
+    </div>
+  </div>
+
+  <div class="logout">
+    <button (click)="logout()">Вийти</button>
+  </div>
+</div>

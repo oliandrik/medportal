@@ -1,0 +1,36 @@
+<div class="signup">
+  <form (ngSubmit)="register()" class="auth-form">
+    <img
+      src="../../../assets/HealthPortal.png"
+      class="logo"
+      alt="HealthPortal"
+    />
+    <h2>Форма реєстрації лікарів</h2>
+    <div class="form-group">
+      <div class="form-flex">
+        <input type="text" placeholder="Прізвище" />
+        <input type="text" placeholder="Імʼя" />
+      </div>
+      <div class="form-block">
+        <input type="text" placeholder="По батькові" />
+        <input type="email" placeholder="Електронна адреса" />
+        <input type="text" placeholder="Спеціалізація лікаря" />
+      </div>
+      <div class="form-flex">
+        <input type="password" placeholder="Пароль" />
+        <input type="password" placeholder="Повторити пароль" />
+      </div>
+    </div>
+
+    <div class="button" (click)="register()">
+      <button type="submit">Зареєструватися</button>
+    </div>
+
+    <div class="link">
+      <a href="/doctors/login">Якщо ви вже маєте акаунт, натисність сюди</a>
+    </div>
+  </form>
+  <div class="auth-block-image">
+    <div class="block-image"></div>
+  </div>
+</div>

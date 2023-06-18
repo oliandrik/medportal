@@ -1,0 +1,39 @@
+.sidebar {
+  height: calc(100vh - 100px);
+  margin-top: 16px;
+  border-top: 1px solid #dcdcdc;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.links {
+  padding: 10px 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.links > a {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 500;
+}
+
+.links > a:hover {
+  color: rgb(42, 42, 42);
+  background-color: #47bb92d0;
+  width: 100%;
+  padding: 10px;
+  margin: -10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.logout button {
+  width: 96%;
+  display: block;
+  margin: 0 auto;
+  padding: 10px 18px;
+  background-color: transparent;
+  border-radius: 20px;
+}

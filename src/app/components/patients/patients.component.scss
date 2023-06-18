@@ -1,0 +1,29 @@
+.avatar,
+.personal-info,
+.address-detail {
+  border: 1px solid #efeded;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: white;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+h2 {
+  margin: 10px 0;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+// tr:nth-child(even) {
+//   background-color: #dddddd;
+// }

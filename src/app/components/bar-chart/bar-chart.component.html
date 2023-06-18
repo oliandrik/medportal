@@ -1,0 +1,16 @@
+<div class="section">
+  <ngx-charts-bar-vertical-2d
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="multi"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    (select)="onSelect($event)"
+    (activate)="onActivate($event)"
+    (deactivate)="onDeactivate($event)"
+  >
+  </ngx-charts-bar-vertical-2d>
+</div>

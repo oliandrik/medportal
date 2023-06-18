@@ -1,0 +1,31 @@
+<div class="login">
+  <form (ngSubmit)="onSubmit()" class="auth-form">
+    <img
+      src="../../../assets/HealthPortal.png"
+      class="logo"
+      alt="HealthPortal"
+    />
+    <h2>Форма авторизації</h2>
+    <div class="form-group" [formGroup]="form">
+      <input
+        type="text"
+        formControlName="email"
+        placeholder="Електронна адреса"
+      />
+      <input type="password" formControlName="password" placeholder="Пароль" />
+
+      <a href="/reset-password">Забули пароль?</a>
+    </div>
+
+    <div class="button">
+      <button type="submit">Увійти</button>
+    </div>
+
+    <div class="link">
+      <a href="/signup">Якщо ви хочете створити акаунт, натисність сюди</a>
+    </div>
+  </form>
+  <div class="auth-block-image">
+    <div class="block-image"></div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="patients">
+  <h2>Пацієнти</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ПІБ пацієнта</th>
+        <th>Діагноз</th>
+        <th>Дата виписки</th>
+        <th>Стан здоровʼя</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of patients">
+        <td>{{ patient.fullname }}</td>
+        <td>{{ patient.diagnosis }}</td>
+        <td>{{ patient.date }}</td>
+        <td>{{ patient.state }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

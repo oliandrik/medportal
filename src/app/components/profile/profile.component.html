@@ -1,0 +1,57 @@
+<div class="profile">
+  <h2>Профіль</h2>
+  <div class="avatar">
+    <div>
+      <img [src]="avatar" alt="" />
+    </div>
+  </div>
+  <div class="personal-info">
+    <div class="caption">
+      <h2>Особиста інформація</h2>
+      <button class="edit" (click)="toggleButtonText('button1')">
+        {{ buttonStates["button1"] ? "Прийняти" : "Редагувати" }}
+      </button>
+    </div>
+    <div class="flex">
+      <div class="inner-flex">
+        <p class="title">Прізвище</p>
+        <app-field [(value)]="lastname" [isEditing]="isEditing"></app-field>
+      </div>
+      <div class="inner-flex">
+        <p class="title">Імʼя</p>
+        <app-field [(value)]="firstname" [isEditing]="isEditing"></app-field>
+      </div>
+      <div class="inner-flex">
+        <p class="title">По-батькові</p>
+        <app-field [(value)]="patronymic" [isEditing]="isEditing"></app-field>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="inner-flex">
+        <p class="title">Електронна адреса</p>
+        <app-field [(value)]="email" [isEditing]="isEditing"></app-field>
+      </div>
+      <div class="inner-flex">
+        <p class="title">Номер телефону</p>
+        <app-field [(value)]="phone" [isEditing]="isEditing"></app-field>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="inner-flex">
+        <p class="title">Місто</p>
+        <app-field [(value)]="city" [isEditing]="isEditing"></app-field>
+      </div>
+      <div class="inner-flex">
+        <p class="title">Вулиця</p>
+        <app-field [(value)]="street" [isEditing]="isEditing"></app-field>
+      </div>
+    </div>
+
+    <div>
+      <div *ngIf="!isDoctor">
+        <p class="title">Лікуючий лікар</p>
+        <p>{{ doctor }}</p>
+      </div>
+    </div>
+  </div>
+</div>
